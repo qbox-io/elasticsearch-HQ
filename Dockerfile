@@ -26,7 +26,7 @@ ADD . /src
 COPY ./deployment/logging.conf /src/logging.conf
 COPY ./deployment/gunicorn.conf /src/gunicorn.conf
 
-EXPOSE 5000
+EXPOSE 9100
 
 # Setup supervisord
 RUN mkdir -p /var/log/supervisor
