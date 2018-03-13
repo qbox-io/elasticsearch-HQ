@@ -3,9 +3,9 @@ ElasticHQ
 
 Simplified Monitoring and Management for ElasticSearch clusters.
 
-[![GitHub Stars](https://img.shields.io/github/stars/ElasticHQ/elasticsearch-HQ.svg)](https://github.com/ElasticHQ/elasticsearch-HQ) 
-[![GitHub Issues](https://img.shields.io/github/issues/ElasticHQ/elasticsearch-HQ.svg)](https://github.com/ElasticHQ/elasticsearch-HQ) 
-[![Current Version](https://img.shields.io/badge/version-3.0.0-green.svg)](https://github.com/ElasticHQ/elasticsearch-HQ) 
+[![GitHub Stars](https://img.shields.io/github/stars/ElasticHQ/elasticsearch-HQ.svg)](https://github.com/ElasticHQ/elasticsearch-HQ)
+[![GitHub Issues](https://img.shields.io/github/issues/ElasticHQ/elasticsearch-HQ.svg)](https://github.com/ElasticHQ/elasticsearch-HQ)
+[![Current Version](https://img.shields.io/badge/version-3.0.0-green.svg)](https://github.com/ElasticHQ/elasticsearch-HQ)
 ![Python](https://img.shields.io/badge/python-v3.4%20%2F%20v3.6-blue.svg)
 [![License](https://img.shields.io/badge/license-ASL-blue.svg)](https://opensource.org/licenses/ASL)
 
@@ -15,7 +15,7 @@ Simplified Monitoring and Management for ElasticSearch clusters.
 
 Key Features
 ------------
-* Works with 2.x, 5.x, 6.x and current versions of Elasticsearch. 
+* Works with 2.x, 5.x, 6.x and current versions of Elasticsearch.
 * Monitor **many** clusters at once.
 * Monitor Nodes, Indices, Shards, and general cluster metrics.
 * Create and perform maintenance on Elasticsearch Indices.
@@ -36,7 +36,7 @@ Installation
 
 For **full** installation and configuration instructions, see [Getting Started](http://docs.elastichq.org/installation.html)
 
-1. Download or clone the repository. 
+1. Download or clone the repository.
 2. Open terminal and point to root of repository. Type: ``pip install -r requirements.txt``
 3. Run server with: `` python application.py ``. Alternatively: ``./manage.py runserver``
 4. Access HQ with: `` http://localhost:5000 ``
@@ -53,5 +53,6 @@ Useful Links
 * [Docker Images](https://hub.docker.com/r/elastichq/elasticsearch-hq/)
 * [Google Group](https://groups.google.com/d/forum/elastichq)
 
-
-
+Qbox Particular
+----------------
+We use port 9100 and it has been set to be exposed in the Dockerfile and also in the deployment/supervisord.conf file. If you are running locally, you will want to use http://localhost:9100
