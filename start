@@ -1,0 +1,43 @@
+#!/bin/sh
+ELASTICSEARCH_HOST="http://43da8407243c2950efd0:900e1de5fd@10.0.84.155:9200"
+
+#getting host from ELASTICSEARCH_HOST
+parthost="$(awk -F@ '{print $2}' <<<"$ELASTICSEARCH_HOST")"
+host="$(awk -F: '{print $1}' <<<"$parthost")"
+#getting port from ELASTICSEARCH_HOST
+port="$(awk -F: '{print $2}' <<<"$parthost")"
+partuser1="$(awk -F@ '{print $1}' <<<"$ELASTICSEARCH_HOST")"
+partuser2="$(awk -F/ '{print $3}' <<<"$partuser1")"
+#getting user from ELASTICSEARCH_HOST
+user="$(awk -F: '{print $1}' <<<"$partuser2")"
+#getting password from ELASTICSEARCH_HOST
+password="$(awk -F: '{print $2}' <<<"$partuser2")"
+
+if [ ! -n "$ELASTICSEARCH_HOST" ] ; then
+ host="localhost:9200"
+ user="elasticsearch"
+ password="elasticsearch@123"
+fi
+
+#echo $parthost
+echo $host
+echo $port
+echo $user
+echo $password
+
+
+echo "Starting supervisor in the foreground"
+
+supervisord -n -c /etc/supervisor/supervisord.conf
+
+echo "Sleeping for enviroment variables to be injected"
+sleep 10
+
+echo "Sending basic auth to monitor pod."
+curl 'localhost:9100/api/clusters/_connect' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, br'\
+-H 'Accept-Language: en-US,en;q=0.9'\
+-H 'Content-Type: application/json;charset=UTF-8'\
+-H 'Accept: application/json, text/plain, */*'\
+-H 'Cache-Control: no-cache'\
+-H 'Connection: keep-alive'\
+--data-binary '{"ip":"${host}","port":"${port}","username":"${user}","password":"${password}","use_ssl":false}' --compressed
