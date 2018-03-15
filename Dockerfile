@@ -34,7 +34,7 @@ COPY ./deployment/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./deployment/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # Start processes
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/start"]
 
 
 #ENTRYPOINT ["python"]
