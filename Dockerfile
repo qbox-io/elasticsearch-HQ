@@ -3,6 +3,7 @@ FROM python:3.6-alpine3.7
 RUN apk update
 RUN apk add supervisor
 RUN apk add --update py2-pip
+RUN apk add curl
 
 # Upgrade and install basic Python dependencies
 # This block added because of the trouble installing gevent on many systems
@@ -33,6 +34,7 @@ RUN mkdir -p /var/log/supervisor
 COPY ./deployment/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./deployment/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 COPY ./start /start
+
 
 # Start processes
 CMD ["/start"]

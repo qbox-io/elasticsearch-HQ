@@ -14,7 +14,8 @@ user="$(awk -F: '{print $1}' <<<"$partuser2")"
 password="$(awk -F: '{print $2}' <<<"$partuser2")"
 
 if [ ! -n "$ELASTICSEARCH_HOST" ] ; then
- host="localhost:9200"
+ host="localhost"
+ port="9200"
  user="elasticsearch"
  password="elasticsearch@123"
 fi
@@ -26,12 +27,13 @@ echo $user
 echo $password
 
 
-echo "Starting supervisor in the foreground"
+echo "Starting supervisor"
 
-supervisord -n -c /etc/supervisor/supervisord.conf
+supervisord -n -c /etc/supervisor/supervisord.conf &
 
 echo "Sleeping for enviroment variables to be injected"
-sleep 20
+sleep 25
+echo "Slept for 25 seconds"
 
 echo "Sending basic auth to monitor pod."
 curl 'localhost:9100/api/clusters/_connect' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, br' \
@@ -41,3 +43,4 @@ curl 'localhost:9100/api/clusters/_connect' -H 'Pragma: no-cache' -H 'Accept-Enc
 -H 'Cache-Control: no-cache' \
 -H 'Connection: keep-alive' \
 --data-binary "{\"ip\":\"${host}\",\"port\":\"${port}\",\"username\":\"${user}\",\"password\":\"${password}\",\"use_ssl\":false}" --compressed
+wait
