@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ELASTICSEARCH_HOST="http://43da8407243c2950efd0:900e1de5fd@10.0.84.155:9200"
 
 #getting host from ELASTICSEARCH_HOST
@@ -31,13 +31,13 @@ echo "Starting supervisor in the foreground"
 supervisord -n -c /etc/supervisor/supervisord.conf
 
 echo "Sleeping for enviroment variables to be injected"
-sleep 10
+sleep 20
 
 echo "Sending basic auth to monitor pod."
-curl 'localhost:9100/api/clusters/_connect' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, br'\
--H 'Accept-Language: en-US,en;q=0.9'\
--H 'Content-Type: application/json;charset=UTF-8'\
--H 'Accept: application/json, text/plain, */*'\
--H 'Cache-Control: no-cache'\
--H 'Connection: keep-alive'\
---data-binary '{"ip":"${host}","port":"${port}","username":"${user}","password":"${password}","use_ssl":false}' --compressed
+curl 'localhost:9100/api/clusters/_connect' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, br' \
+-H 'Accept-Language: en-US,en;q=0.9' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'Accept: application/json, text/plain, */*' \
+-H 'Cache-Control: no-cache' \
+-H 'Connection: keep-alive' \
+--data-binary "{\"ip\":\"${host}\",\"port\":\"${port}\",\"username\":\"${user}\",\"password\":\"${password}\",\"use_ssl\":false}" --compressed

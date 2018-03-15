@@ -32,6 +32,7 @@ EXPOSE 9100
 RUN mkdir -p /var/log/supervisor
 COPY ./deployment/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./deployment/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
+COPY ./start /start
 
 # Start processes
 CMD ["/start"]
