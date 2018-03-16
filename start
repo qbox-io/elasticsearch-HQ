@@ -1,5 +1,5 @@
 #!/bin/bash
-ELASTICSEARCH_HOST="http://43da8407243c2950efd0:900e1de5fd@172.17.0.3:9200"
+#ELASTICSEARCH_HOST="http://43da8407243c2950efd0:900e1de5fd@172.17.0.3:9200"
 
 #getting host from ELASTICSEARCH_HOST
 parthost="$(awk -F@ '{print $2}' <<<"$ELASTICSEARCH_HOST")"
@@ -21,11 +21,10 @@ if [ ! -n "$ELASTICSEARCH_HOST" ] ; then
 fi
 
 #echo $parthost
-echo $host
-echo $port
-echo $user
-echo $password
-
+#echo $host
+#echo $port
+#echo $user
+#echo $password
 
 echo "Starting supervisor"
 
