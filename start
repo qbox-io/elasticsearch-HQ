@@ -32,8 +32,8 @@ echo "Starting supervisor"
 supervisord -n -c /etc/supervisor/supervisord.conf &
 
 echo "Sleeping for enviroment variables to be injected"
-sleep 25
-echo "Slept for 25 seconds"
+sleep 2m
+echo "Slept for 2 minutes"
 
 echo "Sending basic auth to monitor pod."
 curl 'localhost:9100/api/clusters/_connect' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, br' \
