@@ -1,5 +1,4 @@
 #!/bin/bash
-#ELASTICSEARCH_HOST="http://43da8407243c2950efd0:900e1de5fd@172.17.0.3:9200"
 
 #getting host from ELASTICSEARCH_HOST
 parthost="$(awk -F@ '{print $2}' <<<"$ELASTICSEARCH_HOST")"
